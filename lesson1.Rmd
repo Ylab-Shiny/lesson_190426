@@ -4,7 +4,7 @@ site: bookdown::bookdown_site
 output:
   bookdown::gitbook: default
 ---
-##Chapter1
+#Chapter1
 Rには専用のエディタ（コーディングをサポートするソフトウェア）である[Rstudio](https://www.rstudio.com/products/rstudio/download/)という便利な開発環境が用意されているので、各自のPCのOS環境にあったものをインストールしてください。
 
 ```{r}
@@ -17,12 +17,12 @@ setwd("C:\\Users\\hiroya\\Documents\\")
 setwd("~\\")
 
 ```
-##Chapter2
+#Chapter2
 例えば「?関数名とコンソール」に打ち込むと、こんな文章が表示されます。英語の勉強ができますｗ
 
-###Matrices（行列）
+##Matrices（行列）
 
-###Description（説明）
+##Description（説明）
 
 matrix creates a matrix from the given set of values.
 
@@ -30,7 +30,7 @@ as.matrix attempts to turn its argument into a matrix.
 
 is.matrix tests if its argument is a (strict) matrix.
 
-###Usage（使い方）
+##Usage（使い方）
 
 matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE,
        dimnames = NULL)
@@ -41,7 +41,7 @@ as.matrix(x, rownames.force = NA, ...)
 
 is.matrix(x)
 
-###Arguments（引数）
+##Arguments（引数）
 
 data	
 an optional data vector (including a list or expression vector). Non-atomic classed R objects are coerced by as.vector and all attributes discarded.
@@ -73,5 +73,76 @@ mdat <- matrix(c(1,2,3, 11,12,13), nrow = 2, ncol = 3, byrow = TRUE,
                                c("C.1", "C.2", "C.3")))
 mdat
 
+
+```
+
+#Chapter3
+##変数とデータ型
+数値
+文字列
+
+ベクトル
+行列
+リスト
+データフレーム
+
+NULL
+TRUE(T) / False(F)
+NA(欠損値)
+NaN(非数)
+Inf(無限大)
+
+```{r}
+# 代入演算子(<-)や演算子(+, -, *, /)の両脇に半角スペースを入れるとよい（コードが見やすくなる）
+x <- 5
+x
+# データ型を確認するときはclass関数を使う numeric:数値型 character:文字列型
+class(x)
+x + 3
+# まず先に定義した変数mdatのみを実行環境(Environment)から削除
+rm(list = "mdat")
+# すると、実行環境にはまだ変数xが残る
+ls()
+# 全ての変数を削除したい場合は…
+rm(list = ls())
+ls()
+```
+#Chapter4
+```{r}
+#- 数値について
+5 + 3
+# 商
+10 / 3
+# 整数商
+10 %/% 3
+# 余り
+10 %% 3
+# べき乗
+2 ^ 4
+# 三角関数　cos, sin, tan
+cos(1)
+# 平方根
+sqrt(2)
+# 小数第２位を四捨五入
+round(2.555, digits = 1)
+
+#- 文字列について
+"abc"
+# 文字列の連結　デフォルトは間に半角スペース
+paste("kubota", "nakagawa", "yamamoto")
+# 間に半角スペースを入れたくないとき
+paste0("kubota", "nakagawa", "yamamoto")
+paste("kubota", "nakagawa", "yamamoto", sep = "")
+# 間をスラッシュにしたいとき
+paste("kubota", "nakagawa", "yamamoto", sep = "/")
+
+#- 数値・文字列変換
+x <- 5
+x
+# 文字列化
+x <- as.character(x)
+x
+# 数値に戻す
+print(as.numeric(x))
 
 ```
