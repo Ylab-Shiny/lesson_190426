@@ -1,10 +1,12 @@
 ---
-title: "課題1の補足"
+title: "R言語初学者のためのRnotebook"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook: default
 ---
 #Chapter1
+##はじめに
+このページは[ドットインストールR言語入門](https://dotinstall.com/lessons/basic_r)（要会員登録、無料）に沿って、作成したものであり、このレッスンコンテンツと一緒に見ていただければと思います。対象は、R言語の初学者を想定しており、決してRnotebookの使い方を解説するものではないのでご注意ください。
 Rには専用のエディタ（コーディングをサポートするソフトウェア）である[Rstudio](https://www.rstudio.com/products/rstudio/download/)という便利な開発環境が用意されているので、各自のPCのOS環境にあったものをインストールしてください。
 
 ```{r}
@@ -18,11 +20,12 @@ setwd("~\\")
 
 ```
 #Chapter2
+##helpの利用
 例えば「?関数名とコンソール」に打ち込むと、こんな文章が表示されます。英語の勉強ができますｗ
 
-##Matrices（行列）
+**Matrices（行列）**
 
-##Description（説明）
+**Description（説明）**
 
 matrix creates a matrix from the given set of values.
 
@@ -30,7 +33,7 @@ as.matrix attempts to turn its argument into a matrix.
 
 is.matrix tests if its argument is a (strict) matrix.
 
-##Usage（使い方）
+**Usage（使い方）**
 
 matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE,
        dimnames = NULL)
@@ -41,7 +44,7 @@ as.matrix(x, rownames.force = NA, ...)
 
 is.matrix(x)
 
-##Arguments（引数）
+**Arguments（引数）**
 
 data	
 an optional data vector (including a list or expression vector). Non-atomic classed R objects are coerced by as.vector and all attributes discarded.
@@ -78,19 +81,19 @@ mdat
 
 #Chapter3
 ##変数とデータ型
-数値
-文字列
+- 数値
+- 文字列
 
-ベクトル
-行列
-リスト
-データフレーム
+- ベクトル
+- 行列
+- リスト
+- データフレーム
 
-NULL
-TRUE(T) / False(F)
-NA(欠損値)
-NaN(非数)
-Inf(無限大)
+- NULL
+- TRUE(T) / False(F)
+- NA(欠損値)
+- NaN(非数)
+- Inf(無限大)
 
 ```{r}
 # 代入演算子(<-)や演算子(+, -, *, /)の両脇に半角スペースを入れるとよい（コードが見やすくなる）
@@ -183,6 +186,223 @@ rep(1:5, length=13)
 ```
 #Chapter6
 ##ベクトル演算
+*論理演算子*
+- 大なり `>`
+- 小なり `<`
+- 以下 `<=`
+- 以上 `>=`
+- 等しい `==`
+- 等しくない `!=`
+
 ```{r}
+x <- c(1, 3, 5)
+y <- c(2, 3, 4)
+# ベクトルの定数倍
+x * 2
+# ベクトル要素全てから1引く
+x - 1
+# ベクトル同士の和
+x + y
+# ベクトルの比較
+x > y
+
+#- 集合演算
+x %in% y # x要素がy中に存在するか
+# 和集合
+union(x, y)
+# 積集合
+intersect(x, y)
+# 差集合
+setdiff(x, y)
+# 集合同士が等しいか
+setequal(x, y)
+```
+#Chapter7
+##因子ベクトル（カテゴリ付きのベクトル）
+因子（性別、サイズなど）分析をするときに利用します。
+```{r}
+#- Tシャツのサイズを因子とする場合
+x <- c("S", "M", "L", "M", "L")
+x
+# xの因子化 デフォルト：アルファベット順に因子化
+x.fc <- factor(x)
+x.fc
+# x.fc中の因子の確認
+levels(x.fc)
+# 因子の順序の変更
+x.fc <- factor(x, levels = c("S", "M", "L"))
+x.fc
+# 因子の大小関係の設定
+x.or <- ordered(x, levels=c("S", "M", "L"))
+x.or
+```
+#Chapter8
+##行列の扱い
+```{r}
+# ベクトルを行列化 row:行, column:列 default:行ごとに流し込まれる
+x <- matrix(1:6, nrow = 3, ncol = 2)
+x
+# 列ごとに流し込む場合
+x <- matrix(1:6, nrow = 3, ncol = 2, byrow = T)
+x
+# ベクトルを行方向で結合
+x <- rbind(c(1,2), 3:4, 5:6)
+x
+# 列方向に結合
+x <- cbind(c(1,2), 3:4, 5:6)
+x
+
+#- 行列の演算
+# 全要素に1を足す
+x + 1
+# 逆数を取る
+1 / x
+# 行数と列数の確認
+dim(x) # 行数　列数と出力
+# 行数の確認
+nrow(x)
+# 列数の確認
+ncol(x)
 
 ```
+#Chapter9
+##行列の編集
+行列の要素へのアクセスは基本、行列オブジェクト[行番号, 列番号]です。python等の言語と違い、インデックスが1から始まることに注意してください。
+```{r}
+x <- cbind(c(1,2), 3:4, 5:6)
+x
+# 1列目へのアクセス
+x[,1]
+# 2行目へのアクセス
+x[2,]
+# 第1行第2列目の要素
+x[1, 2]
+# 複数要素へのアクセス（連続範囲）
+x[1, 1:2]
+# （非連続範囲）
+x[1, c(1,3)]
+
+# ExcelなどのようにUIで編集　個人的には全く使っていませんでしたw
+# edit(X)
+# fix(x)
+
+#- 特定要素の更新
+x[1, 2] <- 10
+x
+#- 行方向に要素の追加
+x <- rbind(x, 7:9)
+x
+#- 列方向に要素の追加
+x <- cbind(x, 10:12)
+x
+```
+#Chapter10
+##リストの扱い
+リストを使うと、異なるデータ型のデータを一緒に扱うことができます。
+```{r}
+# ベクトル、文字列、行列を格納したリスト
+x <- list(5:10, "abc", matrix(1:6, nrow = 2, ncol = 3))
+x
+# リスト要素の取り出し 数値ベクトルのリストの場合
+x[1]
+# 数値ベクトルを取り出すには…
+x[[1]]
+# 行列のリストから取り出す場合
+x[[3]]
+x[[3]][1, 2]
+```
+#Chapter11
+##データフレームについて
+データフレームでは各列を異なるデータ型にするすることができ、列名がつきます。一般的に、Rによるデータ分析ではデータフレーム型のデータセットが扱われことが多いです。
+```{r}
+#- Tシャツが何枚売れたかを管理するデータフレームを仮定 default:文字列を因子と認識
+x <- data.frame(SIZE=c("M", "L", "S", "L", "M"),
+                SALES=c(1, 2, 1, 3, 1))
+# 文字列を因子と認識させたくないときは… 引数にstringsAsFactors = Fを追加
+# x <- data.frame(SIZE=c("M", "L", "S", "L", "M"),
+#                 SALES=c(1, 2, 1, 3, 1), stringsAsFactors = F)
+
+# 行列のようにアクセス
+x[1, 2]
+# SIZE列の取り出し（3パターン） 
+x[,1]
+x[[1]]
+x$SIZE # 私は一番この取り出し方が好きです
+
+#- R言語に付随するiris（アヤメ）データセットを使ってみる
+head(iris)
+dataset <- iris
+# datasetをWDにcsvファイルとして保存
+# write.csv(dataset, file = "dataset.csv")
+# csvファイルの読み込み 欠損値は存在しない
+dataset2 <- read.table("dataset.csv", header = T, sep = ",", na.strings = "*")
+# データセットの末尾の確認
+tail(dataset2)
+```
+#Chapter12
+##データの集計について
+```{r}
+#- 前章のdatasetを利用します
+head(dataset)
+# Sepal.Lengthの合計
+sum(dataset$Sepal.Length)
+# Sepal.Lengthの最大値
+max(dataset$Sepal.Length)
+# Sepal.Lengthの最小値
+min(dataset$Sepal.Length)
+
+# Sepal.Widthの平均値
+mean(dataset$Sepal.Width)
+# Sepal.Widthの中央値
+median(dataset$Sepal.Width)
+# Sepal.Widthの標準偏差
+sd(dataset$Sepal.Width)
+
+# Petal.LengthにNAがあったとする
+dataset$Petal.Length[90:100] <- NA
+# 欠損値（NA）があると、
+mean(dataset$Petal.Length) # 計算不可
+# なので、欠損値を除いて計算してみる 引数にna.rm=Tを加える
+mean(dataset$Petal.Length, na.rm = T)
+
+#- 基本統計量の確認
+# 特定の列に対して
+summary(dataset$Petal.Width)
+# データセット
+summary(dataset)
+
+#- datasetの構造確認
+# 150行5列　1～4列目：数値　5列目：因子と分かる
+str(dataset)
+```
+#Chapter13
+##グラフを描こう
+データ分析において、グラフを作成することは欠かせません。また、グラフから新たな発見が得られる場合もあります。
+```{r}
+#- Rインストール時に付属されているデータの確認
+# data()
+#- carsを利用する　車のスピードで停止するまでにどれほどの距離がかかったかを記録したデータ
+head(cars)
+# 構造確認
+str(cars)
+# 基本統計量
+summary(cars)
+
+#- グラフの描画
+# ヒストグラム
+hist(cars$speed)
+# 棒グラフ
+barplot(cars$speed)
+# 変数の相関を確認するための散布図
+plot(x = cars$speed, y = cars$dist)
+# 共分散（範囲：-1 ~ +1)を計算　強い正の相関
+cor(x = cars$speed, y = cars$dist)
+```
+#さいごに
+これまでの内容を手を動かしながら、コーディングしていただければ、最低限のRの基礎は身につくかと思います。
+あと、if・for・while文についてはやや記法が独特だと感じますが、それはググっていただければと思います。ググり力もプログラミングの上達には重要な要素だと私は考えています。Rは多様な分析目的に応じて、様々な外部パッケージが用意されています（例えば、時系列分析をしたいのであれば`tseries`などのパッケージをインストールするとよいでしょう）。外部パッケージのインストールについては、コンソールで`install.packages("tseries")`を実行してください。
+ネット上では、様々な方たちがRに関する情報を発信してくれています。たとえ英語が苦手でも、日本人のRユーザーの方たちによる情報発信がたくさん見受けられます。
+
+Rによるデータ分析をもっとやってみたいというような初心者は、次に[ *tidyverse* ](https://www.tidyverse.org/)をインストールするとよいでしょう。このパッケージはデータサイエンスのために開発されたパッケージを集約してあるものです。*dplyr* (データの整形)、*ggplot2* (データの可視化)、*readr* (様々な形式のデータの読み込み)などが含まれています。私のデータ分析スキルはまだまだお察しレベルですが、*dplyr* のパイプライン`%>%`記法は便利なので、ぜひ利用してみてください。それでは！
+
+Presented by [HRY](https://twitter.com/hiyakebaka)

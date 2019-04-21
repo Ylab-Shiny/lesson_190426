@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>6 Chapter6 | R言語初学者のためのRnotebook</title>
-  <meta name="description" content="6 Chapter6 | R言語初学者のためのRnotebook">
+  <title>13 Chapter13 | R言語初学者のためのRnotebook</title>
+  <meta name="description" content="13 Chapter13 | R言語初学者のためのRnotebook">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="6 Chapter6 | R言語初学者のためのRnotebook" />
+  <meta property="og:title" content="13 Chapter13 | R言語初学者のためのRnotebook" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Chapter6 | R言語初学者のためのRnotebook" />
+  <meta name="twitter:title" content="13 Chapter13 | R言語初学者のためのRnotebook" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="chapter5.html">
-<link rel="next" href="chapter7.html">
+<link rel="prev" href="chapter12.html">
+<link rel="next" href="section-14.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,40 +155,49 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter6" class="section level1">
-<h1><span class="header-section-number">6</span> Chapter6</h1>
-<div id="section-6.1" class="section level2">
-<h2><span class="header-section-number">6.1</span> ベクトル演算</h2>
-<p><em>論理演算子</em> - 大なり <code>&gt;</code> - 小なり <code>&lt;</code> - 以下 <code>&lt;=</code> - 以上 <code>&gt;=</code> - 等しい <code>==</code> - 等しくない <code>!=</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
-<span class="co"># ベクトルの定数倍</span>
-x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
-<pre><code>## [1]  2  6 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトル要素全てから1引く</span>
-x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
-<pre><code>## [1] 0 2 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトル同士の和</span>
-x <span class="op">+</span><span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] 3 6 9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトルの比較</span>
-x <span class="op">&gt;</span><span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- 集合演算</span>
-x <span class="op">%in%</span><span class="st"> </span>y <span class="co"># x要素がy中に存在するか</span></code></pre></div>
-<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 和集合</span>
-<span class="kw">union</span>(x, y)</code></pre></div>
-<pre><code>## [1] 1 3 5 2 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 積集合</span>
-<span class="kw">intersect</span>(x, y)</code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 差集合</span>
-<span class="kw">setdiff</span>(x, y)</code></pre></div>
-<pre><code>## [1] 1 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 集合同士が等しいか</span>
-<span class="kw">setequal</span>(x, y)</code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
+<div id="chapter13" class="section level1">
+<h1><span class="header-section-number">13</span> Chapter13</h1>
+<div id="section-13.1" class="section level2">
+<h2><span class="header-section-number">13.1</span> グラフを描こう</h2>
+<p>データ分析において、グラフを作成することは欠かせません。また、グラフから新たな発見が得られる場合もあります。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- Rインストール時に付属されているデータの確認</span>
+<span class="co"># data()</span>
+<span class="co">#- carsを利用する　車のスピードで停止するまでにどれほどの距離がかかったかを記録したデータ</span>
+<span class="kw">head</span>(cars)</code></pre></div>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 構造確認</span>
+<span class="kw">str</span>(cars)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    50 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 基本統計量</span>
+<span class="kw">summary</span>(cars)</code></pre></div>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- グラフの描画</span>
+<span class="co"># ヒストグラム</span>
+<span class="kw">hist</span>(cars<span class="op">$</span>speed)</code></pre></div>
+<p><img src="lesson1_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 棒グラフ</span>
+<span class="kw">barplot</span>(cars<span class="op">$</span>speed)</code></pre></div>
+<p><img src="lesson1_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 変数の相関を確認するための散布図</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> cars<span class="op">$</span>speed, <span class="dt">y =</span> cars<span class="op">$</span>dist)</code></pre></div>
+<p><img src="lesson1_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 共分散（範囲：-1 ~ +1)を計算　強い正の相関</span>
+<span class="kw">cor</span>(<span class="dt">x =</span> cars<span class="op">$</span>speed, <span class="dt">y =</span> cars<span class="op">$</span>dist)</code></pre></div>
+<pre><code>## [1] 0.8068949</code></pre>
 </div>
 </div>
             </section>
@@ -196,8 +205,8 @@ x <span class="op">%in%</span><span class="st"> </span>y <span class="co"># x要
           </div>
         </div>
       </div>
-<a href="chapter5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter12.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-14.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

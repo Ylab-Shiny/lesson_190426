@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>6 Chapter6 | R言語初学者のためのRnotebook</title>
-  <meta name="description" content="6 Chapter6 | R言語初学者のためのRnotebook">
+  <title>12 Chapter12 | R言語初学者のためのRnotebook</title>
+  <meta name="description" content="12 Chapter12 | R言語初学者のためのRnotebook">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="6 Chapter6 | R言語初学者のためのRnotebook" />
+  <meta property="og:title" content="12 Chapter12 | R言語初学者のためのRnotebook" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Chapter6 | R言語初学者のためのRnotebook" />
+  <meta name="twitter:title" content="12 Chapter12 | R言語初学者のためのRnotebook" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="chapter5.html">
-<link rel="next" href="chapter7.html">
+<link rel="prev" href="chapter11.html">
+<link rel="next" href="chapter13.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,40 +155,77 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter6" class="section level1">
-<h1><span class="header-section-number">6</span> Chapter6</h1>
-<div id="section-6.1" class="section level2">
-<h2><span class="header-section-number">6.1</span> ベクトル演算</h2>
-<p><em>論理演算子</em> - 大なり <code>&gt;</code> - 小なり <code>&lt;</code> - 以下 <code>&lt;=</code> - 以上 <code>&gt;=</code> - 等しい <code>==</code> - 等しくない <code>!=</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
-<span class="co"># ベクトルの定数倍</span>
-x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
-<pre><code>## [1]  2  6 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトル要素全てから1引く</span>
-x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
-<pre><code>## [1] 0 2 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトル同士の和</span>
-x <span class="op">+</span><span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] 3 6 9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトルの比較</span>
-x <span class="op">&gt;</span><span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- 集合演算</span>
-x <span class="op">%in%</span><span class="st"> </span>y <span class="co"># x要素がy中に存在するか</span></code></pre></div>
-<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 和集合</span>
-<span class="kw">union</span>(x, y)</code></pre></div>
-<pre><code>## [1] 1 3 5 2 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 積集合</span>
-<span class="kw">intersect</span>(x, y)</code></pre></div>
+<div id="chapter12" class="section level1">
+<h1><span class="header-section-number">12</span> Chapter12</h1>
+<div id="section-12.1" class="section level2">
+<h2><span class="header-section-number">12.1</span> データの集計について</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- 前章のdatasetを利用します</span>
+<span class="kw">head</span>(dataset)</code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sepal.Lengthの合計</span>
+<span class="kw">sum</span>(dataset<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>## [1] 876.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sepal.Lengthの最大値</span>
+<span class="kw">max</span>(dataset<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>## [1] 7.9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sepal.Lengthの最小値</span>
+<span class="kw">min</span>(dataset<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>## [1] 4.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sepal.Widthの平均値</span>
+<span class="kw">mean</span>(dataset<span class="op">$</span>Sepal.Width)</code></pre></div>
+<pre><code>## [1] 3.057333</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sepal.Widthの中央値</span>
+<span class="kw">median</span>(dataset<span class="op">$</span>Sepal.Width)</code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 差集合</span>
-<span class="kw">setdiff</span>(x, y)</code></pre></div>
-<pre><code>## [1] 1 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 集合同士が等しいか</span>
-<span class="kw">setequal</span>(x, y)</code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sepal.Widthの標準偏差</span>
+<span class="kw">sd</span>(dataset<span class="op">$</span>Sepal.Width)</code></pre></div>
+<pre><code>## [1] 0.4358663</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Petal.LengthにNAがあったとする</span>
+dataset<span class="op">$</span>Petal.Length[<span class="dv">90</span><span class="op">:</span><span class="dv">100</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
+<span class="co"># 欠損値（NA）があると、</span>
+<span class="kw">mean</span>(dataset<span class="op">$</span>Petal.Length) <span class="co"># 計算不可</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># なので、欠損値を除いて計算してみる 引数にna.rm=Tを加える</span>
+<span class="kw">mean</span>(dataset<span class="op">$</span>Petal.Length, <span class="dt">na.rm =</span> T)</code></pre></div>
+<pre><code>## [1] 3.736691</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- 基本統計量の確認</span>
+<span class="co"># 特定の列に対して</span>
+<span class="kw">summary</span>(dataset<span class="op">$</span>Petal.Width)</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.100   0.300   1.300   1.199   1.800   2.500</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># データセット</span>
+<span class="kw">summary</span>(dataset)</code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.500   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.500   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.737   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##                                  NA&#39;s   :11                     
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+##                 
+## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- datasetの構造確認</span>
+<span class="co"># 150行5列　1～4列目：数値　5列目：因子と分かる</span>
+<span class="kw">str</span>(dataset)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 </div>
 </div>
             </section>
@@ -196,8 +233,8 @@ x <span class="op">%in%</span><span class="st"> </span>y <span class="co"># x要
           </div>
         </div>
       </div>
-<a href="chapter5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter13.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

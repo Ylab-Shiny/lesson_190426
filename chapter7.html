@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>6 Chapter6 | R言語初学者のためのRnotebook</title>
-  <meta name="description" content="6 Chapter6 | R言語初学者のためのRnotebook">
+  <title>7 Chapter7 | R言語初学者のためのRnotebook</title>
+  <meta name="description" content="7 Chapter7 | R言語初学者のためのRnotebook">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="6 Chapter6 | R言語初学者のためのRnotebook" />
+  <meta property="og:title" content="7 Chapter7 | R言語初学者のためのRnotebook" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Chapter6 | R言語初学者のためのRnotebook" />
+  <meta name="twitter:title" content="7 Chapter7 | R言語初学者のためのRnotebook" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="chapter5.html">
-<link rel="next" href="chapter7.html">
+<link rel="prev" href="chapter6.html">
+<link rel="next" href="chapter8.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,40 +155,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter6" class="section level1">
-<h1><span class="header-section-number">6</span> Chapter6</h1>
-<div id="section-6.1" class="section level2">
-<h2><span class="header-section-number">6.1</span> ベクトル演算</h2>
-<p><em>論理演算子</em> - 大なり <code>&gt;</code> - 小なり <code>&lt;</code> - 以下 <code>&lt;=</code> - 以上 <code>&gt;=</code> - 等しい <code>==</code> - 等しくない <code>!=</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
-<span class="co"># ベクトルの定数倍</span>
-x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
-<pre><code>## [1]  2  6 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトル要素全てから1引く</span>
-x <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
-<pre><code>## [1] 0 2 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトル同士の和</span>
-x <span class="op">+</span><span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] 3 6 9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ベクトルの比較</span>
-x <span class="op">&gt;</span><span class="st"> </span>y</code></pre></div>
-<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- 集合演算</span>
-x <span class="op">%in%</span><span class="st"> </span>y <span class="co"># x要素がy中に存在するか</span></code></pre></div>
-<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 和集合</span>
-<span class="kw">union</span>(x, y)</code></pre></div>
-<pre><code>## [1] 1 3 5 2 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 積集合</span>
-<span class="kw">intersect</span>(x, y)</code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 差集合</span>
-<span class="kw">setdiff</span>(x, y)</code></pre></div>
-<pre><code>## [1] 1 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 集合同士が等しいか</span>
-<span class="kw">setequal</span>(x, y)</code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
+<div id="chapter7" class="section level1">
+<h1><span class="header-section-number">7</span> Chapter7</h1>
+<div id="section-7.1" class="section level2">
+<h2><span class="header-section-number">7.1</span> 因子ベクトル（カテゴリ付きのベクトル）</h2>
+<p>因子（性別、サイズなど）分析をするときに利用します。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#- Tシャツのサイズを因子とする場合</span>
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;L&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;L&quot;</span>)
+x</code></pre></div>
+<pre><code>## [1] &quot;S&quot; &quot;M&quot; &quot;L&quot; &quot;M&quot; &quot;L&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># xの因子化 デフォルト：アルファベット順に因子化</span>
+x.fc &lt;-<span class="st"> </span><span class="kw">factor</span>(x)
+x.fc</code></pre></div>
+<pre><code>## [1] S M L M L
+## Levels: L M S</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># x.fc中の因子の確認</span>
+<span class="kw">levels</span>(x.fc)</code></pre></div>
+<pre><code>## [1] &quot;L&quot; &quot;M&quot; &quot;S&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 因子の順序の変更</span>
+x.fc &lt;-<span class="st"> </span><span class="kw">factor</span>(x, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;L&quot;</span>))
+x.fc</code></pre></div>
+<pre><code>## [1] S M L M L
+## Levels: S M L</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 因子の大小関係の設定</span>
+x.or &lt;-<span class="st"> </span><span class="kw">ordered</span>(x, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;S&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;L&quot;</span>))
+x.or</code></pre></div>
+<pre><code>## [1] S M L M L
+## Levels: S &lt; M &lt; L</code></pre>
 </div>
 </div>
             </section>
@@ -196,8 +189,8 @@ x <span class="op">%in%</span><span class="st"> </span>y <span class="co"># x要
           </div>
         </div>
       </div>
-<a href="chapter5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
